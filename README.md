@@ -176,3 +176,9 @@ Setelah halaman baru diedit dan save, akan terbentuk halaman baru bernama hello 
 ![image](https://github.com/user-attachments/assets/d9b9a6fd-68e6-49a7-9e0e-340cccd818b9)
 
 Tampilan web apabila mencoba akses dengan path yang tidak sesuai, akan mereturn 404 page not found.
+
+## Data Acess Result 
+
+### Connecting database, query, add data
+![image](https://github.com/user-attachments/assets/d7609e1a-a598-456b-9798-42075915f103)
+
