@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albums List</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fce4ec; /* Light pink background */
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #d81b60; /* Dark pink for the title */
+            padding: 20px;
+            background-color: #f06292; /* Lighter pink for header */
+            margin: 0;
+        }
+
+        /* Table Styles */
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #f8bbd0; /* Light pink border */
+        }
+
+        th {
+            background-color: #f8bbd0; /* Soft pink for headers */
+            color: #c2185b; /* Dark pink for header text */
+        }
+
+        tr:nth-child(even) {
+            background-color: #fce4ec; /* Alternating row color */
+        }
+
+        tr:hover {
+            background-color: #f06292; /* Hover effect with light pink */
+            color: white;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 600px) {
+            table {
+                width: 100%;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Albums</h1>
+    <table id="albums">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data akan ditambahkan di sini -->
+        </tbody>
+    </table>
+
+    <script>
+        // Fetch data album dari API
+        fetch('http://localhost:8080/albums')
+            .then(response => response.json())  // Mengonversi respons menjadi JSON
+            .then(data => {
+                console.log(data);  // Menampilkan data album di console
+
+                const tableBody = document.querySelector('#albums tbody');
+                tableBody.innerHTML = '';  // Kosongkan tabel sebelum menambahkan data
+
+                // Menambahkan data album ke tabel
+                data.forEach(album => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${album.id}</td>
+                        <td>${album.title}</td>
+                        <td>${album.artist}</td>
+                        <td>$${album.price.toFixed(2)}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching albums:', error);
+            });
+    </script>
+</body>
+</html>
